@@ -1,0 +1,6 @@
+{
+    "files": {
+        "test_project/main.c": "int main() { \n    return 0;\n}\n",
+        "test_project/Makefile": "all:\n\tgcc -o main main.c\n"
+    }
+}
