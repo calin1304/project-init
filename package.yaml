@@ -22,10 +22,12 @@ description:         Please see the README on GitHub at <https://github.com/gith
 dependencies:
 - base >= 4.7 && < 5
 - aeson
+- directory
+- filepath
+- generic-lens
+- lens
 - text
 - unordered-containers
-- filepath
-- directory
 
 library:
   source-dirs: src
@@ -54,6 +56,7 @@ tests:
 
 default-extensions:
   - BlockArguments
+  - DataKinds
   - DeriveAnyClass
   - DeriveGeneric
   - DerivingStrategies

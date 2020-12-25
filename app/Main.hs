@@ -7,6 +7,8 @@ import System.FilePath (takeDirectory)
 import System.Directory (createDirectoryIfMissing)
 import Data.Foldable (traverse_)
 import System.Environment (getArgs)
+import Control.Lens
+import Data.Generics.Product.Fields (field)
 
 import Config
 
@@ -14,7 +16,7 @@ main :: IO ()
 main =
     (head <$> getArgs)
         >>= eitherDecodeFileStrict @Config
-        >>= traverse_ (\config -> traverse_ writeFile (files config))
+        >>= traverseOf_ (folded . _files . folded) writeFile
   where
     writeFile :: (Text, Text) -> IO ()
     writeFile (path, content) = do

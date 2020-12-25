@@ -7,11 +7,16 @@ import Data.Bifunctor (second)
 import Data.HashMap.Strict (toList)
 import Data.Text
 import GHC.Generics (Generic)
+import Control.Lens
+import Data.Generics.Product.Fields (field)
 
 data Config = Config
     { files :: [(Text, Text)]
     }
     deriving stock (Show, Generic)
+
+_files :: Lens' Config [(Text, Text)]
+_files = field @"files"
 
 instance FromJSON Config where
     parseJSON = withObject "Config" $ \obj ->
